@@ -6,7 +6,7 @@
           <img src="../assets/vue.svg" alt="IO" />
         </div>
         <div class="flex flex-col">
-          <span class="font-bold text-sm">TU-SMK App</span>
+          <span class="font-bold text-sm">Pengerjaan App</span>
           <span class="text-xs text-muted-foreground">v1.0.0</span>
         </div>
       </div>
@@ -108,7 +108,7 @@
 
 <script setup lang="ts">
 import type { SidebarProps } from "@/components/ui/sidebar"
-import { ChevronRight, LayoutDashboard, Database, BookOpen, FileText } from "lucide-vue-next"
+import { ChevronRight, LayoutDashboard, Database, FileText } from "lucide-vue-next"
 import {
   Collapsible,
   CollapsibleContent,
@@ -152,11 +152,6 @@ const navMain = computed<NavItem[]>(() => [
     icon: LayoutDashboard,
   },
   {
-    title: "Pembayaran",
-    url: "/pembayaran",
-    icon: LayoutDashboard,
-  },
-  {
     title: "Data Master",
     url: "#",
     icon: Database,
@@ -164,26 +159,7 @@ const navMain = computed<NavItem[]>(() => [
       { title: "Data User", url: "/#", icon: FileText },
       { title: "Data Unit Kantor", url: "/#", icon: FileText }
     ],
-  },
-  {
-    title: "Accounting",
-    url: "#",
-    icon: BookOpen,
-    items: [
-      { title: "Data Kode Jurnal", url: "/#", icon: FileText },
-      { title: "Data Perkiraan", url: "/#", icon: FileText }
-    ],
-  },
-  {
-    title: "Lap Accounting",
-    url: "#",
-    icon: FileText,
-    items: [
-      { title: "Lap Jurnal Transaksi", url: "/#", icon: FileText },
-      { title: "Lap Buku Besar", url: "/#", icon: FileText },
-      { title: "Lap Neraca (Skontro)", url: "#", icon: FileText },
-    ],
-  },
+  }
 ])
 
 const isChildActive = (childItem: NavItem) => {

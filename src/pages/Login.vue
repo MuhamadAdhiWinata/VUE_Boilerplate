@@ -10,10 +10,9 @@
                 <div class="flex flex-col items-center gap-2 text-center pb-2">
                     <a href="#" class="flex flex-col items-center gap-2 font-medium">
                         <img src="../assets/vue.svg" alt="Jurnal App" class="h-20" />
-                        <span class="sr-only">SMK PAKEM</span>
+                        <span class="sr-only">Pengerjaan</span>
                     </a>
                 </div>
-              <div class="text-destructive text-center">Hello Gais</div>
               <div class="grid gap-6">
                 <!-- Username -->
                 <div class="grid gap-2">
@@ -164,7 +163,7 @@ async function handleLogin() {
     await new Promise(resolve => setTimeout(resolve, 1500))
 
     // Dummy validation
-    if (formData.username === 'admin' && formData.password === '123456') {
+    if (formData.username === 'siswa' && formData.password === 'siswa123') {
       toast({
         title: 'Login Berhasil',
         description: 'Selamat datang kembali!'
