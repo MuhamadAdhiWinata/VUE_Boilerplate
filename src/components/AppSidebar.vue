@@ -20,7 +20,6 @@
           :key="item.title"
           class="mb-1 last:mb-0"
         >
-          <!-- Menu Items tanpa children -->
           <div v-if="!item.items?.length">
             <SidebarMenuButton
               as-child
