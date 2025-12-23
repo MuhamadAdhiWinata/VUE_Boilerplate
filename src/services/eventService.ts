@@ -123,7 +123,7 @@ export class ExamService {
       return {
         success: true,
         message: 'Exam started successfully',
-        redirectUrl: `/exam/${examId}/session`
+        redirectUrl: `/exam/${examId}`
       };
     } catch (error) {
       console.error('Error starting exam:', error);

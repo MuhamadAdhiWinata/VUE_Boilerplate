@@ -87,7 +87,7 @@ function handleLogout() {
   toast({
     title: "Logged out",
     description: "You’ve been logged out successfully.",
-    variant: "destructive",
+    variant: "success",
   })
 }
 </script>

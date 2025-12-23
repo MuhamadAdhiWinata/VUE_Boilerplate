@@ -1,6 +1,7 @@
+// hooks/use-toast.ts
 import { ref } from 'vue'
 
-export type ToastVariant = 'default' | 'destructive'
+export type ToastVariant = 'default' | 'destructive' | 'success'
 
 export interface Toast {
   id: string
@@ -12,58 +13,54 @@ export interface Toast {
 
 const toasts = ref<Toast[]>([])
 
-let toastCounter = 0
-
 export function useToast() {
-  function toast({
+  const toast = ({
     title,
     description,
     variant = 'default',
-    duration = 3000
-  }: Omit<Toast, 'id'>) {
-    const id = `toast-${++toastCounter}`
+    duration = 5000
+  }: Omit<Toast, 'id'>) => {
+    const id = Date.now().toString()
     
     const newToast: Toast = {
       id,
       title,
       description,
-      variant,
-      duration
+      variant
     }
-
+    
     toasts.value.push(newToast)
-
-    // Auto remove after duration
+    
+    // Auto dismiss after duration
     if (duration > 0) {
       setTimeout(() => {
         dismiss(id)
       }, duration)
     }
-
-    return {
-      id,
-      dismiss: () => dismiss(id),
-      update: (props: Partial<Toast>) => update(id, props)
-    }
+    
+    return { id }
   }
-
-  function dismiss(id: string) {
-    const index = toasts.value.findIndex(t => t.id === id)
+  
+  const dismiss = (id: string) => {
+    const index = toasts.value.findIndex(toast => toast.id === id)
     if (index > -1) {
       toasts.value.splice(index, 1)
     }
   }
-
-  function update(id: string, props: Partial<Toast>) {
-    const toast = toasts.value.find(t => t.id === id)
-    if (toast) {
-      Object.assign(toast, props)
-    }
+  
+  const success = (title: string, description?: string, duration?: number) => {
+    return toast({ title, description, variant: 'success', duration })
   }
-
+  
+  const error = (title: string, description?: string, duration?: number) => {
+    return toast({ title, description, variant: 'destructive', duration })
+  }
+  
   return {
-    toast,
     toasts,
+    toast,
+    success,
+    error,
     dismiss
   }
 }

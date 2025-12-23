@@ -67,7 +67,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(51.379% 0.09706 248.21);
+  --primary: oklch(49.789% 0.14732 144.961);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -260,4 +260,24 @@
 
 .hover\:text-sidebar-accent-foreground:hover {
   color: var(--sidebar-accent-foreground);
+}
+
+/* Di dalam @theme inline, tambahkan: */
+@theme inline {
+  /* ... existing variables ... */
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+}
+
+/* Di dalam :root, tambahkan: */
+:root {
+  /* ... existing variables ... */
+  --success: oklch(0.696 0.17 162.48); /* Green untuk success */
+  --success-foreground: oklch(0.985 0 0); /* White text on success */
+}
+
+.dark {
+  /* ... existing variables ... */
+  --success: oklch(0.696 0.17 162.48);
+  --success-foreground: oklch(0.145 0 0); /* Dark text on success in dark mode */
 }
