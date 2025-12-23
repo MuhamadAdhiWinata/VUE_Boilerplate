@@ -1,24 +1,23 @@
 <template>
-  <Sidebar v-bind="props">
-    <SidebarHeader>
-      <div class="flex items-center gap-4">
-        <div class="w-10 h-10 rounded-lg flex items-center justify-center">
-          <img src="../assets/vue.svg" alt="IO" />
+  <Sidebar v-bind="props" class="border-r border-sidebar">
+    <SidebarHeader class="p-4 border-b border-sidebar">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+          <div class="w-6 h-6 rounded-full bg-gradient-to-r from-primary to-primary/60"></div>
         </div>
         <div class="flex flex-col">
-          <span class="font-bold text-sm">Pengerjaan App</span>
+          <span class="font-semibold text-sm text-sidebar-foreground">Pengerjaan App</span>
           <span class="text-xs text-muted-foreground">v1.0.0</span>
         </div>
       </div>
-      <div class="w-full border-t"></div>
     </SidebarHeader>
 
-    <SidebarContent class="gap-0">
+    <SidebarContent class="gap-0 p-2">
       <SidebarMenu>
         <SidebarMenuItem
           v-for="item in navMain"
           :key="item.title"
-          class="mb-1 last:mb-0"
+          class="mb-0.5 last:mb-0"
         >
           <div v-if="!item.items?.length">
             <SidebarMenuButton
@@ -28,10 +27,12 @@
             >
               <RouterLink
                 :to="item.url"
-                class="flex items-center gap-2 w-full px-2 py-1.5 rounded-md text-sm font-medium text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground"
+                class="flex items-center gap-3 w-full px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground data-[active=true]:bg-primary/10 data-[active=true]:text-primary data-[active=true]:border-l-2 data-[active=true]:border-l-primary"
               >
-                <component :is="item.icon" class="w-4 h-4 shrink-0" />
-                <span class="truncate">{{ item.title }}</span>
+                <div class="w-5 h-5 flex items-center justify-center">
+                  <component :is="item.icon" class="w-4 h-4 shrink-0 text-sidebar-foreground group-hover:text-sidebar-accent-foreground data-[active=true]:text-primary" />
+                </div>
+                <span class="truncate text-sidebar-foreground group-hover:text-sidebar-accent-foreground data-[active=true]:text-primary">{{ item.title }}</span>
               </RouterLink>
             </SidebarMenuButton>
           </div>
@@ -48,19 +49,23 @@
                 class="w-full"
               >
                 <CollapsibleTrigger
-                  class="flex items-center gap-2 w-full px-2 py-1.5 rounded-md text-sm font-medium text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground group/collapsible"
+                  class="flex items-center justify-between w-full px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground data-[active=true]:bg-primary/10 data-[active=true]:text-primary group/collapsible"
                 >
-                  <component :is="item.icon" class="w-4 h-4 shrink-0" />
-                  <span class="truncate flex-1 text-left">{{ item.title }}</span>
+                  <div class="flex items-center gap-3">
+                    <div class="w-5 h-5 flex items-center justify-center">
+                      <component :is="item.icon" class="w-4 h-4 shrink-0 text-sidebar-foreground group-hover:text-sidebar-accent-foreground data-[active=true]:text-primary" />
+                    </div>
+                    <span class="truncate flex-1 text-left text-sidebar-foreground group-hover:text-sidebar-accent-foreground data-[active=true]:text-primary">{{ item.title }}</span>
+                  </div>
                   <ChevronRight
-                    class="w-4 h-4 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90"
+                    class="w-3.5 h-3.5 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90 text-muted-foreground"
                   />
                 </CollapsibleTrigger>
               </SidebarMenuButton>
 
-              <CollapsibleContent>
-                <SidebarGroupContent class="mt-1 ml-2">
-                  <SidebarMenu class="space-y-1">
+              <CollapsibleContent class="overflow-hidden">
+                <SidebarGroupContent class="mt-0.5 ml-7">
+                  <SidebarMenu class="space-y-0.5">
                     <SidebarMenuItem
                       v-for="childItem in item.items"
                       :key="childItem.title"
@@ -71,23 +76,29 @@
                             <SidebarMenuButton
                               as-child
                               :is-active="isChildActive(childItem)"
-                              class="pl-4 py-1.5 text-sm hover:bg-sidebar-accent hover:text-sidebar-accent-foreground data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground"
+                              class="w-full px-2.5 py-1.5 rounded-md text-sm transition-all duration-200 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground data-[active=true]:bg-primary/10 data-[active=true]:text-primary data-[active=true]:font-medium"
                             >
                               <RouterLink
                                 :to="childItem.url"
-                                class="flex items-center gap-2 w-full"
+                                class="flex items-center gap-2.5 w-full"
                               >
-                                <component
-                                  v-if="childItem.icon"
-                                  :is="childItem.icon"
-                                  class="w-3.5 h-3.5"
-                                />
-                                <span class="truncate">{{ childItem.title }}</span>
+                                <div class="w-4 h-4 flex items-center justify-center">
+                                  <component
+                                    v-if="childItem.icon"
+                                    :is="childItem.icon"
+                                    class="w-3 h-3 text-sidebar-foreground group-hover:text-sidebar-accent-foreground data-[active=true]:text-primary"
+                                  />
+                                </div>
+                                <span class="truncate text-sidebar-foreground group-hover:text-sidebar-accent-foreground data-[active=true]:text-primary">{{ childItem.title }}</span>
                               </RouterLink>
                             </SidebarMenuButton>
                           </TooltipTrigger>
-                          <TooltipContent side="right" :side-offset="10">
-                            <p class="text-sm font-medium">{{ childItem.title }}</p>
+                          <TooltipContent 
+                            side="right" 
+                            :side-offset="10" 
+                            class="bg-sidebar text-sidebar-foreground border border-sidebar-border shadow-lg text-sm"
+                          >
+                            <p class="font-medium">{{ childItem.title }}</p>
                           </TooltipContent>
                         </Tooltip>
                       </TooltipProvider>
@@ -107,7 +118,17 @@
 
 <script setup lang="ts">
 import type { SidebarProps } from "@/components/ui/sidebar"
-import { ChevronRight, LayoutDashboard, Database, FileText } from "lucide-vue-next"
+import { 
+  ChevronRight, 
+  LayoutDashboard, 
+  Database, 
+  FileText,
+  Users,
+  Building,
+  ClipboardList,
+  Calendar,
+  Settings
+} from "lucide-vue-next"
 import {
   Collapsible,
   CollapsibleContent,
@@ -144,6 +165,7 @@ interface NavItem {
 
 const openStates = ref<Record<string, boolean>>({})
 
+// Update nav items untuk lebih relevan dengan dashboard ujian
 const navMain = computed<NavItem[]>(() => [
   {
     title: "Dashboard",
@@ -151,18 +173,34 @@ const navMain = computed<NavItem[]>(() => [
     icon: LayoutDashboard,
   },
   {
+    title: "Ujian & Tes",
+    url: "#",
+    icon: ClipboardList,
+    items: [
+      { title: "Daftar Ujian", url: "/exams", icon: FileText },
+      { title: "Riwayat Ujian", url: "/exam-history", icon: Calendar },
+      { title: "Hasil Ujian", url: "/exam-results", icon: FileText }
+    ],
+  },
+  {
     title: "Data Master",
     url: "#",
     icon: Database,
     items: [
-      { title: "Data User", url: "/#", icon: FileText },
-      { title: "Data Unit Kantor", url: "/#", icon: FileText }
+      { title: "Data Siswa", url: "/students", icon: Users },
+      { title: "Data Kelas", url: "/classes", icon: Building },
+      { title: "Data Mata Pelajaran", url: "/subjects", icon: FileText }
     ],
+  },
+  {
+    title: "Pengaturan",
+    url: "/settings",
+    icon: Settings,
   }
 ])
 
 const isChildActive = (childItem: NavItem) => {
-  return route.path === childItem.url
+  return route.path === childItem.url || route.path.startsWith(childItem.url + '/')
 }
 
 const isParentActive = (item: NavItem) => {
@@ -170,7 +208,7 @@ const isParentActive = (item: NavItem) => {
 }
 
 const isItemActive = (item: NavItem) => {
-  return route.path === item.url
+  return route.path === item.url || route.path.startsWith(item.url + '/')
 }
 
 watch(
@@ -178,7 +216,7 @@ watch(
   (currentPath) => {
     navMain.value.forEach(item => {
       if (item.items?.some(child => {
-        return currentPath === child.url
+        return currentPath === child.url || currentPath.startsWith(child.url + '/')
       })) {
         openStates.value[item.title] = true
       }
@@ -186,12 +224,38 @@ watch(
   },
   { immediate: true }
 )
-
-watch(
-  () => route.path,
-  (path) => {
-    console.log('Current path:', path)
-    console.log('Open states:', openStates.value)
-  }
-)
 </script>
+
+<style scoped>
+/* Custom styling untuk konsistensi dengan dashboard */
+::v-deep(.sidebar-menu-button) {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Active state yang konsisten dengan dashboard */
+::v-deep([data-active="true"]) {
+  position: relative;
+}
+
+::v-deep([data-active="true"])::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--primary), color-mix(in oklch, var(--primary) 80%, transparent));
+  border-radius: 0 2px 2px 0;
+}
+
+/* Untuk child items yang active */
+::v-deep(.sidebar-group-content [data-active="true"])::before {
+  top: 2px;
+  bottom: 2px;
+}
+
+/* Hover effect yang lebih smooth */
+::v-deep(.sidebar-menu-button:hover) {
+  transform: translateX(2px);
+}
+</style>

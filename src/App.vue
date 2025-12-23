@@ -17,7 +17,7 @@ const mode = import.meta.env.VITE_MODE
       <AppNavbar v-if="route.meta?.layout === 'app'" />
       <!-- <AppNavbar v-if="route.meta?.layout === 'app'" /> -->
       
-      <div class="flex-1 p-4">
+      <div class="min-h-screen bg-background p-4">
         <RouterView />
         <Toaster />
       </div>
