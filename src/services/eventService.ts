@@ -1,4 +1,4 @@
-import type { StudentResponse, ExamsResponse, Student, Exam } from '@/types/Icommon';
+import type { StudentResponse, ExamsResponse, Student, Exam } from '@/types/ICommon';
 
 const mockStudent: Student = {
   id: 1,

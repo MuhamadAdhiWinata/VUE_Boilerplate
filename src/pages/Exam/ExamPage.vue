@@ -318,7 +318,8 @@ const handleSubmitExam = async () => {
     toast({
       title: 'Ujian dikumpulkan',
       description: 'Jawaban Anda telah berhasil dikumpulkan',
-      variant: 'success'
+      variant: 'success',
+      duration: 1200,
     })
     
     // Redirect ke hasil

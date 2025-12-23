@@ -151,7 +151,7 @@ import {
   ClockIcon,
   AlertCircleIcon
 } from 'lucide-vue-next'
-import type { Exam, Student } from '@/types/Icommon'
+import type { Exam, Student } from '@/types/ICommon'
 import { examService } from '@/services/eventService'
 
 const router = useRouter()
