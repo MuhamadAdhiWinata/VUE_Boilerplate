@@ -1,4 +1,4 @@
-import type { ExamSession, Question, SubmitExamPayload } from '@/types/IExam'
+import type { ExamSession, SubmitExamPayload } from '@/types/IExam'
 
 // Mock data dengan berbagai tipe soal
 const mockExams: Record<number, ExamSession> = {

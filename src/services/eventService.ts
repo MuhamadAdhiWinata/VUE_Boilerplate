@@ -43,14 +43,14 @@ const mockExams: Exam[] = [
 
 // Service untuk mengambil data dari API
 export class ExamService {
-  private apiBaseUrl: string;
+  // private apiBaseUrl: string;
 
-  constructor(apiBaseUrl?: string) {
-    this.apiBaseUrl = apiBaseUrl || import.meta.env.VITE_API_BASE_URL || 'https://api.example.com';
-  }
+  // constructor(apiBaseUrl?: string) {
+  //   this.apiBaseUrl = apiBaseUrl || import.meta.env.VITE_API_BASE_URL || 'https://api.example.com';
+  // }
 
   // Method untuk mengambil data siswa
-  async getStudentData(studentId?: number): Promise<StudentResponse> {
+  async getStudentData(): Promise<StudentResponse> {
     try {
       // Contoh implementasi dengan fetch API
       // const response = await fetch(`${this.apiBaseUrl}/students/${studentId || 'me'}`);
@@ -70,7 +70,7 @@ export class ExamService {
   }
 
   // Method untuk mengambil daftar ujian
-  async getExams(studentId?: number, status?: string): Promise<ExamsResponse> {
+  async getExams(status?: string): Promise<ExamsResponse> {
     try {
       // Contoh implementasi dengan fetch API
       // let url = `${this.apiBaseUrl}/exams`;

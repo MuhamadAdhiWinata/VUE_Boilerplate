@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import type { ExamState, ExamSession, Question, SubmitExamPayload, SavedExamState } from '@/types/IExam'
+import type {  ExamSession, SubmitExamPayload, SavedExamState } from '@/types/IExam'
 import { examService } from '@/services/examService'
 
 export const useExamStore = defineStore('exam', () => {
